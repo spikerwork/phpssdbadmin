@@ -129,7 +129,7 @@ class SafeUtil
 			$token = self::token();
 		}
 		self::set_data('captcha_' . $token, $code, $ttl);
-		setcookie(self::CAPTCHA_FIELD_NAME, $token, time() + $ttl, '/', '.'.Html::host());
+		setcookie(self::CAPTCHA_FIELD_NAME, $token, time() + $ttl, '/');
 		return $token;
 	}
 	
@@ -159,7 +159,7 @@ class SafeUtil
 		if($saved_code && strtolower($saved_code) === $code){
 			self::del_data($token);
 			// 清除 cookie
-			setcookie(self::CAPTCHA_FIELD_NAME, '', 0, '/', '.'.Html::host());
+			setcookie(self::CAPTCHA_FIELD_NAME, '', 0, '/');
 			return true;
 		}
 		return false;
